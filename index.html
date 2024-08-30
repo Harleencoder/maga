@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Switcher with Lazy Loading</title>
+    <title>Image Switcher</title>
 </head>
 <body>
     <div id="content" style="text-align: center;">
         <!-- Image will be loaded here -->
-        <img id="page-content" src="/assets/1.jpeg" alt="Image 1" style="max-width:100%; height:auto; border:1px solid #000;">
+        <img id="page-content" src="/assets/1.jpeg" alt="Image 1" style="max-width:100%; height:auto; border:5px solid #000;">
     </div>
     
     <!-- Display the current file number -->
@@ -19,16 +19,19 @@
     <button id="prevButton">Previous</button>
     <button id="nextButton">Next</button>
 
-    <script >
+    <script>
         function loadImage(fileNumber) {
     let imgElement = document.getElementById('page-content');
     let filePath = /assets/${fileNumber}.jpeg;
+
+    console.log(Loading image: ${filePath});  // Log the path to be loaded
 
     // Update the image src attribute to the new file path
     imgElement.src = filePath;
 
     // Handle error if the image does not load
     imgElement.onerror = function() {
+        console.error(Failed to load image: ${filePath});
         imgElement.src = '';  // Clear the src
         imgElement.alt = Image ${fileNumber}.jpeg not found;
     };
@@ -40,6 +43,8 @@ function changePage(step) {
 
     // Ensure the file number is not less than 1 (or any other lower limit you want to enforce)
     if (newFileNumber < 1) return;  // Prevent going below 1
+
+    console.log(Changing to image number: ${newFileNumber});  // Log the new image number
 
     // Update the displayed file number
     document.getElementById('currentFileNumber').textContent = newFileNumber;
