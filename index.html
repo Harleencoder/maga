@@ -3,45 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Switcher</title>
+    <title>Image Switcher with Lazy Loading</title>
 </head>
 <body>
-    <div id="content">
-        <!-- Content will be loaded here -->
-        <object id="page-content" type="text/html" data="/public/assets/1.html" style="width:100%; height:500px;"></object>
+    <div id="content" style="text-align: center;">
+        <!-- Image will be loaded here -->
+        <img id="page-content" src="/assets/1.jpeg" alt="Image 1" style="max-width:100%; height:auto; border:1px solid #000;">
     </div>
     
     <!-- Display the current file number -->
     <div id="fileNumberBar" style="margin-top: 10px; font-size: 18px;">
-        Current Page: <span id="currentFileNumber">1</span>
+        Current Image: <span id="currentFileNumber">1</span>
     </div>
 
     <button id="prevButton">Previous</button>
     <button id="nextButton">Next</button>
 
-    <script>function changePage(step) {
-    let content = document.getElementById('page-content');
-    let currentPath = content.getAttribute('data');  // Get the current path
+    <script >
+        function loadImage(fileNumber) {
+    let imgElement = document.getElementById('page-content');
+    let filePath = /assets/${fileNumber}.jpeg;
 
-    // Extract the file name from the path
-    let fileName = currentPath.split('/').pop();  // Get "1.html"
-    let fileNumber = parseInt(fileName.split('.')[0]);  // Get "1" and convert it to an integer
+    // Update the image src attribute to the new file path
+    imgElement.src = filePath;
 
-    // Increment or decrement the file number
-    let newFileNumber = fileNumber + step;
+    // Handle error if the image does not load
+    imgElement.onerror = function() {
+        imgElement.src = '';  // Clear the src
+        imgElement.alt = Image ${fileNumber}.jpeg not found;
+    };
+}
+
+function changePage(step) {
+    let currentNumber = parseInt(document.getElementById('currentFileNumber').textContent);
+    let newFileNumber = currentNumber + step;
 
     // Ensure the file number is not less than 1 (or any other lower limit you want to enforce)
     if (newFileNumber < 1) return;  // Prevent going below 1
 
-    // Construct the new file path
-    let newFileName = newFileNumber + '.html';  // Get "2.html" or "0.html"
-    let newPath = currentPath.replace(fileName, newFileName);
-
-    // Update the object data attribute to the new path
-    content.setAttribute('data', newPath);
-
     // Update the displayed file number
     document.getElementById('currentFileNumber').textContent = newFileNumber;
+
+    // Lazy load the new image
+    loadImage(newFileNumber);
 }
 
 document.getElementById('nextButton').addEventListener('click', function() {
@@ -50,6 +54,10 @@ document.getElementById('nextButton').addEventListener('click', function() {
 
 document.getElementById('prevButton').addEventListener('click', function() {
     changePage(-1);  // Decrement the file number
-});</script>
+});
+
+// Initial image load
+loadImage(1);
+    </script>
 </body>
 </html>
