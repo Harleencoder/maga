@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Switcher</title>
+</head>
+<body>
+    <div id="content">
+        <!-- Content will be loaded here -->
+        <object id="page-content" type="text/html" data="/public/assets/1.html" style="width:100%; height:500px;"></object>
+    </div>
+    
+    <!-- Display the current file number -->
+    <div id="fileNumberBar" style="margin-top: 10px; font-size: 18px;">
+        Current Page: <span id="currentFileNumber">1</span>
+    </div>
+
+    <button id="prevButton">Previous</button>
+    <button id="nextButton">Next</button>
+
+    <script>function changePage(step) {
+    let content = document.getElementById('page-content');
+    let currentPath = content.getAttribute('data');  // Get the current path
+
+    // Extract the file name from the path
+    let fileName = currentPath.split('/').pop();  // Get "1.html"
+    let fileNumber = parseInt(fileName.split('.')[0]);  // Get "1" and convert it to an integer
+
+    // Increment or decrement the file number
+    let newFileNumber = fileNumber + step;
+
+    // Ensure the file number is not less than 1 (or any other lower limit you want to enforce)
+    if (newFileNumber < 1) return;  // Prevent going below 1
+
+    // Construct the new file path
+    let newFileName = newFileNumber + '.html';  // Get "2.html" or "0.html"
+    let newPath = currentPath.replace(fileName, newFileName);
+
+    // Update the object data attribute to the new path
+    content.setAttribute('data', newPath);
+
+    // Update the displayed file number
+    document.getElementById('currentFileNumber').textContent = newFileNumber;
+}
+
+document.getElementById('nextButton').addEventListener('click', function() {
+    changePage(1);  // Increment the file number
+});
+
+document.getElementById('prevButton').addEventListener('click', function() {
+    changePage(-1);  // Decrement the file number
+});</script>
+</body>
+</html>
