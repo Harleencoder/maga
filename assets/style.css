@@ -1,48 +1,89 @@
-.pagination {
+body {
+  background-color: rgb(233, 159, 171);
+  }
+.page0 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 2px;
   }
-  
-  .pagination button {
-    padding: 10px 20px;
+.page0 button {
+    padding: 2px 20px;
     margin: 0 5px;
     cursor: pointer;
   }
-  
-  .pagination span {
+.page0 span {
     display: flex;
   }
-  
-  .pagination span button {
-    background-color: #f1f1f1;
+.page0 span button {
+    background-color: rgb(12, 12, 12);
     border: 1px solid #ddd;
     margin: 0 2px;
-    padding: 10px;
+    padding: 5px 10px;
     cursor: pointer;
   }
-  
-  .pagination span button.active {
+.page0 span button.active {
     background-color: #4caf50;
     color: white;
   }
 /* CSS styles for responsiveness */
 #image-container {
-    max-width: 100vh; /* Container takes up full width */
+    max-width: 100vw; /* Container takes up full width */
     overflow: hidden; /* Hide any overflow */
     text-align: center; /* Center the image */
-}
+    z-index: -1;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+  }
 #page-content {
     max-width: 100vw; /* Image width will not exceed the container's width */
-    height: auto; /* Maintain aspect ratio */
-}
+    height: 80vh; /* Maintain aspect ratio */
+  }
 /* Optional: Style for pagination buttons */
 #pagination {
     margin: 20px 0; /* Space around the pagination */
-}
+  }
 button {
     margin: 0 5px; /* Space between buttons */
     padding: 10px 15px; /* Button padding */
     font-size: 16px; /* Font size for buttons */
-}  
+    border: 2px solid darkviolet;
+    border-radius: 9px;
+    top: 45vw;    
+  }  
+.btn1 {
+  z-index: 2;
+  display: inline-flex;
+  font-size: 1vw !important;
+  margin-left: 10px ;
+  left: 9px;
+  top: 38vh;
+  position: sticky;
+  color: #000;
+  background-color: transparent !important ;
+  }
+#nextButton {
+    background-color: transparent;
+    right: 10px;
+    backdrop-filter: blur(10px);
+    font-style: oblique;
+    font-weight: bold;
+  }
+#prevButton {
+    background-color: transparent;
+    backdrop-filter: blur(2px);
+    font-style: oblique;
+    font-weight: bold;
+  }
+.btn2 {
+  z-index: 2;
+  display: inline-flex;
+  font-size: 1vw !important;
+  margin-right: 10px ;
+  right: 9px;
+  top: 38vh;
+  position: sticky;
+  float: right;
+  background-color: transparent !important;
+  }

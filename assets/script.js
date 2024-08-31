@@ -31,7 +31,8 @@ function changePage(newFileNumber) {
 
     // Update the current file number display
     document.getElementById('currentFileNumber').textContent = newFileNumber;
-
+    
+    
     // Load the new image and update pagination
     loadImage(newFileNumber);
     updatePagination(newFileNumber);

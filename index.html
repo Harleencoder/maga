@@ -4,20 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magazine 2024</title>
-    <style>
-        /* Include CSS for responsive images and layout here */
-    </style>
+    <link rel="stylesheet" href="/assets/style.css">
+    <script src="https://kit.fontawesome.com/5c97ecccc4.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-<div id="pagination"></div> <!-- Pagination bar -->
-<button id="prevButton">Previous Image</button>
-<button id="nextButton">Next Image</button>
-<p>Current PageImage Number: <span id="currentFileNumber">1</span></p>
-
-<div id="image-container">
-    <img id="page-content" src="" alt="Image will be loaded here">
-</div>
-<script src="/assets/script.js"></script>
+    <div class="btn1"><button id="prevButton"><i class="fa-solid fa-backward" style="color: #050505;"></i></button></div>
+    <div class="btn2"><button id="nextButton"><i class="fa-solid fa-forward" style="color: #000000;"></i></button></div>
+    
+    <div id="image-container">
+        <img id="page-content" src="" alt="Image will be loaded here">
+    </div>
+    <div id="pagination" class="page0"></div> <!-- Pagination bar -->
+    <script src="/assets/script.js"></script>
+    <p>Current Page Number: <span id="currentFileNumber">1</span></p>
 </body>
 </html>
