@@ -19,7 +19,7 @@ function loadImage(fileNumber) {
 function changePage(newFileNumber) {
     if (newFileNumber > totalImages) {
         // Redirect to appsc.gndec.ac.in after page 25
-        window.location.href = 'https://appsc.gndec.ac.in/';
+        window.location.href = 'https://causmic.gndec.ac.in/';
         return;
     }
 
