@@ -1,0 +1,48 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .pagination span {
+    display: flex;
+  }
+  
+  .pagination span button {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    margin: 0 2px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .pagination span button.active {
+    background-color: #4caf50;
+    color: white;
+  }
+/* CSS styles for responsiveness */
+#image-container {
+    max-width: 100%; /* Container takes up full width */
+    overflow: hidden; /* Hide any overflow */
+    text-align: center; /* Center the image */
+}
+#page-content {
+    max-width: 100%; /* Image width will not exceed the container's width */
+    height: auto; /* Maintain aspect ratio */
+}
+/* Optional: Style for pagination buttons */
+#pagination {
+    margin: 20px 0; /* Space around the pagination */
+}
+button {
+    margin: 0 5px; /* Space between buttons */
+    padding: 10px 15px; /* Button padding */
+    font-size: 16px; /* Font size for buttons */
+}  

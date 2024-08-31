@@ -3,66 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magazine 2024</title>
+    <title>Responsive Image Example</title>
+   <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
-    <div id="content" style="text-align: center;">
-        <!-- Image will be loaded here -->
-        <img id="page-content" src="/assets/1.jpeg" alt="Image 1" style="max-width:100%; height:auto; border:5px solid #000;">
+    <div id="image-container">
+        <img id="page-content" src="" alt="Image will be loaded here">
     </div>
-    
-    <!-- Display the current file number -->
-    <div id="fileNumberBar" style="margin-top: 10px; font-size: 18px;">
-        Current Image: <span id="currentFileNumber">1</span>
-    </div>
+    <div id="pagination"></div> <!-- Pagination bar here -->
+    <button id="prevButton">Previous Image</button>
+    <button id="nextButton">Next Image</button>
 
-    <button id="prevButton">Previous</button>
-    <button id="nextButton">Next</button>
-
-    <script>
-        function loadImage(fileNumber) {
-    let imgElement = document.getElementById('page-content');
-    let filePath = `/assets/${fileNumber}.jpeg`;
-
-    console.log(`Loading image: ${filePath}`);  // Log the path to be loaded
-
-    // Update the image src attribute to the new file path
-    imgElement.src = filePath;
-
-    // Handle error if the image does not load
-    imgElement.onerror = function() {
-        console.error(`Failed to load image: ${filePath}`);
-        imgElement.src = '';  // Clear the src
-        imgElement.alt = `Image ${fileNumber}.jpeg not found`;
-    };
-}
-
-function changePage(step) {
-    let currentNumber = parseInt(document.getElementById('currentFileNumber').textContent);
-    let newFileNumber = currentNumber + step;
-
-    // Ensure the file number is not less than 1 (or any other lower limit you want to enforce)
-    if (newFileNumber < 1) return;  // Prevent going below 1
-
-    console.log(`Changing to image number: ${newFileNumber}`);  // Log the new image number
-
-    // Update the displayed file number
-    document.getElementById('currentFileNumber').textContent = newFileNumber;
-
-    // Lazy load the new image
-    loadImage(newFileNumber);
-}
-
-document.getElementById('nextButton').addEventListener('click', function() {
-    changePage(1);  // Increment the file number
-});
-
-document.getElementById('prevButton').addEventListener('click', function() {
-    changePage(-1);  // Decrement the file number
-});
-
-// Initial image load
-loadImage(1);
-    </script>
+    <script src="/assets/script.js"></script>
 </body>
 </html>
