@@ -3,7 +3,7 @@ const imagesPerPage = 5; // Number of page numbers shown at a time
 
 function loadImage(fileNumber) {
     let imgElement = document.getElementById('page-content');
-    let filePath = `/assets/${fileNumber}.jpeg`;
+    let filePath = `/assets/pages/${fileNumber}.jpeg`;
 
     console.log(`Loading image: ${filePath}`);  // Log the path to be loaded
 
