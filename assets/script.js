@@ -27,8 +27,10 @@ function changePage(newFileNumber) {
 
     console.log(`Changing to image number: ${newFileNumber}`);
 
+    // Update the current file number display
     document.getElementById('currentFileNumber').textContent = newFileNumber;
 
+    // Load the new image and update pagination
     loadImage(newFileNumber);
     updatePagination(newFileNumber);
 }
@@ -44,7 +46,7 @@ function updatePagination(currentPage) {
     if (startPage > 1) {
         let prevButton = document.createElement('button');
         prevButton.textContent = '«'; // Previous arrow
-        prevButton.addEventListener('click', () => updatePagination(startPage - imagesPerPage));
+        prevButton.addEventListener('click', () => changePage(startPage - imagesPerPage));
         paginationContainer.appendChild(prevButton);
     }
 
@@ -65,11 +67,16 @@ function updatePagination(currentPage) {
     if (endPage < totalImages) {
         let nextButton = document.createElement('button');
         nextButton.textContent = '»'; // Next arrow
-        nextButton.addEventListener('click', () => updatePagination(startPage + imagesPerPage));
+        nextButton.addEventListener('click', () => changePage(startPage + imagesPerPage));
         paginationContainer.appendChild(nextButton);
     }
 }
 
+// Initial image load and pagination setup
+loadImage(1);
+updatePagination(1);
+
+// Add event listeners for next and previous buttons
 document.getElementById('nextButton').addEventListener('click', function() {
     let currentNumber = parseInt(document.getElementById('currentFileNumber').textContent);
     changePage(currentNumber + 1);
@@ -79,7 +86,3 @@ document.getElementById('prevButton').addEventListener('click', function() {
     let currentNumber = parseInt(document.getElementById('currentFileNumber').textContent);
     changePage(currentNumber - 1);
 });
-
-// Initial image load and pagination setup
-loadImage(1);
-updatePagination(1);
