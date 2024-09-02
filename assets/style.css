@@ -87,3 +87,9 @@ button {
   float: right;
   background-color: transparent !important;
   }
+  .bar1 {
+    background-color: #4caf50;
+  }
+  .bar2 {
+    background-color: aquamarine;
+  }
