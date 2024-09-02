@@ -2,7 +2,7 @@ const totalPages = 24;  // Define total pages
 
 function loadImage(fileNumber) {
     const imgElement = document.getElementById('page-content');
-    const filePath = /public/assets/${fileNumber}.jpeg;
+    const filePath = /assets/${fileNumber}.jpeg;
 
     console.log(Attempting to load image: ${filePath});
 
