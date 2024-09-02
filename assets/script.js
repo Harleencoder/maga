@@ -1,113 +1,76 @@
-const totalImages = 24; // Total number of images
-const imagesPerPage = 5; // Number of page numbers shown at a time
+const totalPages = 24;  // Define total pages
 
 function loadImage(fileNumber) {
-    let imgElement = document.getElementById('page-content');
-    let filePath = `/assets/pages/${fileNumber}.jpeg`;
+    const imgElement = document.getElementById('page-content');
+    const filePath = /public/assets/${fileNumber}.jpeg;
 
-    console.log(`Loading image: ${filePath}`);  // Log the path to be loaded
+    console.log(Attempting to load image: ${filePath});
 
     imgElement.src = filePath;
+    imgElement.alt = Image ${fileNumber};
 
     imgElement.onerror = function() {
-        console.error(`Failed to load image: ${filePath}`);
-        imgElement.src = '';  // Clear the src
-        imgElement.alt = `Image ${fileNumber}.jpeg not found`;
+        console.error(Failed to load image: ${filePath});
+        imgElement.src = '';  // Clear the src attribute
+        imgElement.alt = Image ${fileNumber} not found;
     };
+
+    if (fileNumber > totalPages) {
+        window.location.href = "https://www.gndec.ac.in";
+    }
+
+    // Update the active page in pagination
+    updatePagination(fileNumber);
 }
 
-function changePage(newFileNumber) {
-    if (newFileNumber > totalImages) {
-        // Ask for confirmation before redirecting on page 25
-        if (confirm("You have reached the last page. Do you want to exit to appsc.gndec.ac.in?")) {
-            window.location.href = 'https://appsc.gndec.ac.in/';
-        }
+function changePage(step) {
+    const currentNumber = parseInt(document.getElementById('page-content').alt.match(/\d+/)[0]);
+    const newFileNumber = currentNumber + step;
+
+    if (newFileNumber < 1 || newFileNumber > totalPages) {
+        console.log(Invalid page number: ${newFileNumber});
         return;
     }
 
-    if (newFileNumber === 24) {
-        // Pop-up for page 24
-        if (confirm("You are on page 24. Do you want to review or exit?")) {
-            if (confirm("Click OK to review (go to page 1) or Cancel to exit to gndec.ac.in")) {
-                window.location.href = 'https://gndec.ac.in/';
-            } else {
-                changePage(1); // Review option
-            }
-        }
-        return;
-    }
-
-    if (newFileNumber < 1) return;
-
-    console.log(`Changing to image number: ${newFileNumber}`);
-
-    // Update the current file number display
-    document.getElementById('currentFileNumber').textContent = newFileNumber;
-    
-    // Load the new image and update pagination
     loadImage(newFileNumber);
-    updatePagination(newFileNumber);
 }
 
-function updatePagination(currentPage) {
+function goToPage(pageNumber) {
+    loadImage(pageNumber);
+}
+
+function updatePagination(activePage) {
     const paginationContainer = document.getElementById('pagination');
-    paginationContainer.innerHTML = ''; // Clear previous pagination buttons
+    paginationContainer.innerHTML = '';
 
-    let startPage = Math.floor((currentPage - 1) / imagesPerPage) * imagesPerPage + 1;
-    let endPage = Math.min(startPage + imagesPerPage - 1, totalImages);
+    for (let i = 1; i <= totalPages; i++) {
+        const pageLink = document.createElement('span');
+        pageLink.textContent = i;
+        pageLink.style.cursor = 'pointer';
+        pageLink.style.margin = '0 5px';
+        pageLink.style.padding = '5px';
+        pageLink.style.border = '1px solid #000';
+        pageLink.style.borderRadius = '3px';
 
-    // Create Previous button for pagination
-    if (startPage > 1) {
-        let prevButton = document.createElement('button');
-        prevButton.textContent = '«'; // Previous arrow
-        prevButton.addEventListener('click', () => changePage(startPage - imagesPerPage));
-        paginationContainer.appendChild(prevButton);
-    }
-
-    // Create page number buttons
-    for (let i = startPage; i <= endPage; i++) {
-        let pageButton = document.createElement('button');
-        pageButton.textContent = i;
-        if (i === currentPage) {
-            pageButton.disabled = true; // Highlight the current page
+        if (i === activePage) {
+            pageLink.style.backgroundColor = '#ccc';  // Highlight the active page
         }
-        pageButton.addEventListener('click', () => {
-            changePage(i);
-        });
-        paginationContainer.appendChild(pageButton);
-    }
 
-    // Create Next button
-    if (endPage < totalImages) {
-        let nextButton = document.createElement('button');
-        nextButton.textContent = '»'; // Next arrow
-        nextButton.addEventListener('click', () => changePage(startPage + imagesPerPage));
-        paginationContainer.appendChild(nextButton);
+        pageLink.addEventListener('click', function() {
+            goToPage(i);
+        });
+
+        paginationContainer.appendChild(pageLink);
     }
 }
 
-// Initial image load and pagination setup
-loadImage(1);
-updatePagination(1);
-
-// Add event listeners for next and previous buttons
 document.getElementById('nextButton').addEventListener('click', function() {
-    let currentNumber = parseInt(document.getElementById('currentFileNumber').textContent);
-    changePage(currentNumber + 1);
+    changePage(1);
 });
 
 document.getElementById('prevButton').addEventListener('click', function() {
-    let currentNumber = parseInt(document.getElementById('currentFileNumber').textContent);
-    changePage(currentNumber - 1);
+    changePage(-1);
 });
 
-// Populate sidebars (dummy data for illustration)
-function populateSidebars() {
-    const topicsList = document.getElementById('topics-list');
-    const thumbnails = document.getElementById('thumbnails');
-    
-    for (let i = 1; i <= totalImages; i++) {
-        // Create topics list
-        let topicItem = document.createElement('li');
-        topicItem.textContent = `Topic ${i}`;
-        topicsList.appendChild
+// Load the initial image and setup pagination
+loadImage(1);
