@@ -1,4 +1,4 @@
-const totalImages = 25; // Total number of images
+const totalImages = 24; // Total number of images
 const imagesPerPage = 5; // Number of page numbers shown at a time
 
 function loadImage(fileNumber) {
