@@ -25,13 +25,24 @@ function changePage(newFileNumber) {
         return;
     }
 
+    if (newFileNumber === 24) {
+        // Pop-up for page 24
+        if (confirm("You are on page 24. Do you want to review or exit?")) {
+            if (confirm("Click OK to review (go to page 1) or Cancel to exit to gndec.ac.in")) {
+                window.location.href = 'https://gndec.ac.in/';
+            } else {
+                changePage(1); // Review option
+            }
+        }
+        return;
+    }
+
     if (newFileNumber < 1) return;
 
     console.log(`Changing to image number: ${newFileNumber}`);
 
     // Update the current file number display
     document.getElementById('currentFileNumber').textContent = newFileNumber;
-    
     
     // Load the new image and update pagination
     loadImage(newFileNumber);
@@ -89,3 +100,14 @@ document.getElementById('prevButton').addEventListener('click', function() {
     let currentNumber = parseInt(document.getElementById('currentFileNumber').textContent);
     changePage(currentNumber - 1);
 });
+
+// Populate sidebars (dummy data for illustration)
+function populateSidebars() {
+    const topicsList = document.getElementById('topics-list');
+    const thumbnails = document.getElementById('thumbnails');
+    
+    for (let i = 1; i <= totalImages; i++) {
+        // Create topics list
+        let topicItem = document.createElement('li');
+        topicItem.textContent = `Topic ${i}`;
+        topicsList.appendChild
