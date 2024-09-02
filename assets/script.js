@@ -19,7 +19,7 @@ function loadImage(fileNumber) {
 function changePage(newFileNumber) {
     if (newFileNumber > totalImages) {
         // Ask for confirmation before redirecting on page 24
-        let userChoice = confirm("You have reached the last page. Do you want to review or exit?\nClick OK to review (go to the first page) or Cancel to exit (go to appsc.gndec.ac.in).");
+        let userChoice = confirm("You have reached the last page. Do you want to review or exit?\nClick OK to review (go to the first page) or Cancel to exit .");
         if (userChoice) {
             // User chose to review
             window.location.href = '/'; // Redirect to the first page
