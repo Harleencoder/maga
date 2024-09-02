@@ -1,89 +1,108 @@
 body {
   background-color: rgb(233, 159, 171);
-  }
-.page0 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2px;
-  }
-.page0 button {
-    padding: 2px 20px;
-    margin: 0 5px;
-    cursor: pointer;
-  }
-.page0 span {
-    display: flex;
-  }
-.page0 span button {
-    background-color: rgb(12, 12, 12);
-    border: 1px solid #ddd;
-    margin: 0 2px;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-.page0 span button.active {
-    background-color: #4caf50;
-    color: white;
-  }
-/* CSS styles for responsiveness */
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+}
+
+#left-sidebar, #right-sidebar {
+  position: fixed;
+  top: 0;
+  width: 250px;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-right: 2px solid #ddd;
+  z-index: 1;
+}
+
+#left-sidebar {
+  left: 0;
+}
+
+#right-sidebar {
+  right: 0;
+  border-left: 2px solid #ddd;
+}
+
+#topics-list, #thumbnails {
+  padding: 10px;
+}
+
+#topics-list li, #thumbnails div {
+  margin-bottom: 10px;
+}
+
 #image-container {
-    max-width: 100vw; /* Container takes up full width */
-    overflow: hidden; /* Hide any overflow */
-    text-align: center; /* Center the image */
-    z-index: -1;
-    flex-wrap: wrap;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  margin: 0 auto;
+  max-width: calc(100% - 500px); /* Adjust based on sidebar width */
+  overflow: hidden;
+  text-align: center;
+}
+
 #page-content {
-    max-width: 100vw; /* Image width will not exceed the container's width */
-    height: 80vh; /* Maintain aspect ratio */
-  }
-/* Optional: Style for pagination buttons */
+  max-width: 100%;
+  height: 80vh;
+}
+
 #pagination {
-    margin: 20px 0; /* Space around the pagination */
-  }
+  margin: 20px 0;
+}
+
 button {
-    margin: 0 5px; /* Space between buttons */
-    padding: 10px 15px; /* Button padding */
-    font-size: 16px; /* Font size for buttons */
-    border: 2px solid darkviolet;
-    border-radius: 9px;
-    top: 45vw;    
-  }  
-.btn1 {
+  margin: 0 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid darkviolet;
+  border-radius: 9px;
+}
+
+.btn1, .btn2 {
   z-index: 2;
-  display: inline-flex;
-  font-size: 1vw !important;
-  margin-left: 10px ;
-  left: 9px;
-  top: 38vh;
   position: sticky;
-  color: #000;
-  background-color: transparent !important ;
-  }
-#nextButton {
-    background-color: transparent;
-    right: 10px;
-    backdrop-filter: blur(10px);
-    font-style: oblique;
-    font-weight: bold;
-  }
-#prevButton {
-    background-color: transparent;
-    backdrop-filter: blur(2px);
-    font-style: oblique;
-    font-weight: bold;
-  }
-.btn2 {
-  z-index: 2;
-  display: inline-flex;
-  font-size: 1vw !important;
-  margin-right: 10px ;
-  right: 9px;
   top: 38vh;
-  position: sticky;
-  float: right;
   background-color: transparent !important;
+}
+
+.btn1 {
+  left: 9px;
+}
+
+.btn2 {
+  right: 9px;
+}
+
+#nextButton {
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  font-style: oblique;
+  font-weight: bold;
+}
+
+#prevButton {
+  background-color: transparent;
+  backdrop-filter: blur(2px);
+  font-style: oblique;
+  font-weight: bold;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  #left-sidebar, #right-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border: none;
   }
+
+  #image-container {
+    max-width: 100%;
+  }
+
+  .btn1, .btn2 {
+    position: static;
+    display: block;
+    margin: 10px;
+  }
+}
