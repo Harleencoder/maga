@@ -1,24 +1,22 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Switcher with Lazy Loading</title>
+    <title>Harmony 2024 GNDEC</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <script src="https://kit.fontawesome.com/5c97ecccc4.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div id="content" style="text-align: center;">
-        <!-- Image will be loaded here -->
-        <img id="page-content" src="/public/assets/1.jpeg" alt="Image 1" style="max-width:100%; height:auto; border:1px solid #000;">
+    <div class="btn1"><button id="prevButton"><i class="fa-solid fa-backward" style="color: #050505;"></i></button></div>
+    <div class="btn2"><button id="nextButton"><i class="fa-solid fa-forward" style="color: #000000;"></i></button></div>
+    
+    <div id="image-container">
+        <img id="page-content" src="" alt="Image will be loaded here">
     </div>
-
-    <button id="prevButton">Previous</button>
-    <button id="nextButton">Next</button>
-
-    <!-- Pagination Bar -->
-    <div id="pagination" style="margin-top: 20px; font-size: 18px;">
-        <!-- Page numbers will be generated dynamically here -->
-    </div>
-
+    <div id="pagination" class="page0"></div> <!-- Pagination bar -->
     <script src="/assets/script.js"></script>
+    <p>Current Page Number: <span id="currentFileNumber">1</span></p>
 </body>
 </html>
